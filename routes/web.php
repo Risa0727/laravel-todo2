@@ -16,4 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/folders/create', 'App\Http\Controllers\FolderController@showCreateFrom')->name('folders.create');
+Route::post('/folders/create', 'App\Http\Controllers\FolderController@create');
 Route::get('folders/{id}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');

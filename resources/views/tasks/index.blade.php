@@ -23,7 +23,7 @@
           <nav class="card">
             <div class='card-header'>Folder</div>
             <div class='card-body'>
-              <a href='#' class='btn btn-outline-secondary btn-block'>Add Folder</a>
+              <a href='{{ route("folders.create")}}' class='btn btn-outline-secondary btn-block'>Add Folder</a>
             </div>
             <div class='list-group'>
               @foreach($folders as $folder)
