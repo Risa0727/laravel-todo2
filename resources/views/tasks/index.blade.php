@@ -57,7 +57,7 @@
                   <tr>
                     <td>{{ $task->title }}</td>
                     <td><span class='label'>{{ $task->status_label }}</span></td>
-                    <td>{{ $task->due_date }}</td>
+                    <td>{{ $task->formatted_due_date }}</td>
                     <td><a href='#'>Edit</a></td>
                   </tr>
                 @endforeach
