@@ -13,17 +13,21 @@ class Task extends Model
      * 状態定義
      */
     const STATUS = [
-      1 => ['label' => 'Not Started'],
+      1 => ['label' => 'Assigned'],
       2 => ['label' => 'In Progress'],
       3 => ['label' => 'Completed'],
+      4 => ['label' => 'Pending'],
+      5 => ['label' => 'Closed'],
     ];
 
     /**
-    * 状態のラベル
+    * Accessor: 状態のラベル
     * @return string
     */
     public function getStatusLabelAttribute() {
-      $status = $this->attributes['status'];
+      // $status = $this->attributes['status'];
+      $status = $this->status;
+
 
       if(!isset(self::STATUS[$status])) {
         return '';
