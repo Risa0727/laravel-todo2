@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index(int $id) {
-
+    public function index(int $id)
+    {
       $folders = Folder::all();
       $current_folder = Folder::find($id);
 
@@ -21,5 +21,19 @@ class TaskController extends Controller
         'current_folder_id' => $id,
         'tasks' => $tasks,
       ]);
+    }
+
+    /**
+     * GET /folders/{id}/tasks/create
+     */
+    public function showCreateForm(int $id)
+    {
+      return view('tasks/create', [
+        'folder_id' => $id
+      ]);
+    }
+    public function create()
+    {
+
     }
 }

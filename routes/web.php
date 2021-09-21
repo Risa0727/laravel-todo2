@@ -16,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// create new folder
 Route::get('/folders/create', 'App\Http\Controllers\FolderController@showCreateFrom')->name('folders.create');
 Route::post('/folders/create', 'App\Http\Controllers\FolderController@create');
+
+// top page
 Route::get('folders/{id}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+
+// create new task
+Route::get('folders/{id}/tasks/create', 'App\Http\Controllers\TaskController@showCreateForm')->name('tasks.create');
+Route::post('folders/{id}/tasks/create', 'App\Http\Controllers\TaskController@create');

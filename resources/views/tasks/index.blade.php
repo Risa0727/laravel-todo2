@@ -18,7 +18,7 @@
   </header>
   <main>
     <div class='container'>
-      <div class='row'>
+      <div class="row justify-content-center">
         <div class='col col-md-4'>
           <nav class="card">
             <div class='card-header'>Folder</div>
