@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ToDo App</title>
 
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <script src="{{ asset('js/app.js') }}"></script>
+@extends('layout')
+
+@section('style')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+@endsection
 
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <header>
-    <nav class='my-navbar'>
-      <a class='my-navbar-brand' href='/'>ToDo APP</a>
-    </nav>
-  </header>
-  <main>
+@section('main')
     <div class="container">
       <div class="row justify-content-center">
         <div class="col col-md-offset-3 col-md-6">
@@ -52,7 +39,9 @@
         </div>
       </div><!-- row -->
     </div><!-- container -->
-  </main>
+@endsection
+
+@section('script')
   <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
   <script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
   <script>
@@ -62,4 +51,4 @@
       minDate: new Date(),
     });
   </script>
-</body>
+@endsection

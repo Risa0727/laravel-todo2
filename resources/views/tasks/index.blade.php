@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ToDo App</title>
-  <!-- CSS only -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <script src="{{ asset('js/app.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <header>
-    <nav class='my-navbar'>
-      <a class='my-navbar-brand' href='/'>ToDo APP</a>
-    </nav>
-  </header>
-  <main>
+@extends('layout')
+
+@section('main')
     <div class='container'>
       <div class="row justify-content-center">
         <div class='col col-md-4'>
@@ -40,7 +24,7 @@
             <div class='card-header'>Task</div>
             <div class='card-body'>
               <div class='text-right'>
-                <a href="#" class="btn btn-outline-secondary btn-block">Add Task</a>
+                <a href="{{ route('tasks.create', [ 'id' => $current_folder_id]) }}" class="btn btn-outline-secondary btn-block">Add Task</a>
               </div>
             </div>
             <table class='table'>
@@ -67,14 +51,4 @@
         </div><!-- column col-md-8 -->
       </div>
     </div>
-
-
-
-  </main>
-</body>
-
-
-
-
-
-</html>
+@endsection
