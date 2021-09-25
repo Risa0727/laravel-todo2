@@ -19,7 +19,7 @@
             </div>
           </nav><!-- card -->
         </div>
-        <div class='column col-md-8'>
+        <div class='col col-md-8'>
           <div class="card">
             <div class='card-header'>Task</div>
             <div class='card-body'>

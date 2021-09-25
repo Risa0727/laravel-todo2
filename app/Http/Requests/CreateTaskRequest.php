@@ -13,7 +13,7 @@ class CreateTaskRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,12 +25,21 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             'title' => 'required|max:100',
+            'due_date' => 'required|date|after_or_equal:today',
         ];
     }
     public function attributes()
     {
       return [
         'title' => 'Task Name',
-      ]
+        'due_date' => 'Deadline',
+      ];
+    }
+
+    public function messages()
+    {
+      return [
+        // 'due_date.after_or_equal' => ':attribute には今日以降の日付を入力してください。',
+      ];
     }
 }

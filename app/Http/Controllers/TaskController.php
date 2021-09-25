@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\HTTP\Requests\CreateTaskRequest;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -32,8 +34,19 @@ class TaskController extends Controller
         'folder_id' => $id
       ]);
     }
-    public function create()
-    {
 
+    public function create(int $id, CreateTaskRequest $request)
+    {
+      $carbon = new Carbon($request->due_date);
+
+      $current_folder = Folder::find($id);
+
+      $task = new Task();
+      $task->title = $request->title;
+      $task->due_date = $carbon->toDate();
+
+      $current_folder->tasks()->save($task);
+
+      return redirect()->route('tasks.index', ['id'=> $current_folder->id]);
     }
 }
