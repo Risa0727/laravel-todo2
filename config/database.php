@@ -90,7 +90,12 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
-
+        // for tast
+        'sqlite_testing' => [
+          'driver' => 'sqlite',
+          'database' => ':memory:',
+          'prefix' => '',
+        ],
     ],
 
     /*
