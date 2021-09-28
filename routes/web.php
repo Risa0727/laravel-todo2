@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\TaskController;
 
@@ -15,9 +16,11 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 // create new folder
 // Route::get('/folders/create', 'App\Http\Controllers\FolderController@showCreateFrom')->name('folders.create');
 Route::get('/folders/create', [FolderController::class, 'showCreateFrom'])->name('folders.create');
