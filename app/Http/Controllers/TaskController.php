@@ -6,6 +6,7 @@ use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\HTTP\Requests\CreateTaskRequest;
+use App\HTTP\Requests\EditTaskRequest;
 use Carbon\Carbon;
 
 class TaskController extends Controller
@@ -61,4 +62,21 @@ class TaskController extends Controller
         'task' => $task,
       ]);
     }
+
+    public function edit(int $id, int $task_id, EditTaskRequest $request)
+    {
+      $task = Task::find($task_id);
+
+      $task->title = $request->title;
+      $task->status = $request->status;
+
+      $carbon = new Carbon($request->due_date);
+      $task->due_date = $carbon->toDate();
+      $task->save();
+
+      return redirect()->route('tasks.index', [
+        'id' => $task->folder_id,
+      ]);
+    }
+
 }
