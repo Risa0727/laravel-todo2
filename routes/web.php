@@ -19,26 +19,24 @@ use App\Http\Controllers\TaskController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function() {
+  Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// create new folder
-// Route::get('/folders/create', 'App\Http\Controllers\FolderController@showCreateFrom')->name('folders.create');
-Route::get('/folders/create', [FolderController::class, 'showCreateFrom'])->name('folders.create');
-Route::post('/folders/create', [FolderController::class, 'create']);
+  // create new folder
+  // Route::get('/folders/create', 'App\Http\Controllers\FolderController@showCreateFrom')->name('folders.create');
+  Route::get('/folders/create', [FolderController::class, 'showCreateFrom'])->name('folders.create');
+  Route::post('/folders/create', [FolderController::class, 'create']);
 
-// top page
-Route::get('folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+  // top page
+  Route::get('folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
-// create new task
-Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
-Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
+  // create new task
+  Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
+  Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
 
-// edit a task
-Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
-Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
+  // edit a task
+  Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
+  Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
+});
 
 Auth::routes();
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
