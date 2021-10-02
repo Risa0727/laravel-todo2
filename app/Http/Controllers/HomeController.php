@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Folder;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      // Get a loging user
+       $user = Auth::user();
+
+       // Adminユーザーは全てのユーザーのフォルダ/タスクを表示
+       if ($user->name === 'admin') {
+         $folders = Folder::all();
+         $first_folder =  $folders->first();
+         $tasks = $first_folder->tasks()->get();
+
+         return view('tasks/index', [
+           'folders' => $folders,
+           'current_folder_id' => $first_folder->id,
+           'tasks' => $tasks,
+         ]);
+       }
+
+       $folder = $user->folders()->first();
+       if (is_null($folder)) {
+         return view('home');
+        }
+
+       return redirect()->route('tasks.index', [
+         'id' => $folder->id,
+       ]);
     }
 }

@@ -14,7 +14,12 @@ class TaskController extends Controller
 {
     public function index(int $id)
     {
-      $folders = Auth::user()->folders()->get();
+      if (Auth::user()->name == 'admin') {
+        $folders = Folder::all();
+      } else {
+        $folders = Auth::user()->folders()->get();
+      }
+
       $current_folder = Folder::find($id);
 
       $tasks = $current_folder->tasks()->get();

@@ -14,6 +14,9 @@
                 <a href="{{ route('tasks.index', ['id' => $folder->id ])}}"
                   class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}">
                   {{ $folder->title }}
+                  @if ((Auth::check()) && (Auth::user()->name == "admin"))
+                    <span style="font-weight:900;">- User: {{ $folder->user->name}}</span>
+                  @endif
                 </a>
               @endforeach
             </div>
