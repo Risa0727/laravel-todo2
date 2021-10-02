@@ -44,7 +44,7 @@
                   {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" id="logout" href="#">Logout</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                     @csrf
                   </form>
@@ -61,5 +61,14 @@
     @yield('main')
   </main>
   @yield('script')
+  {{-- @if(Auth::check()) --}}
+  @auth
+    <script>
+      document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault();// a要素のリンク機能などブラウザの持つ機能を実行しないようにする
+        document.getElementById('logout-form').submit();
+      });
+    </script>
+  @endauth
 </body>
 </html>
