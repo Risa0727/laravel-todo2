@@ -1,29 +1,11 @@
 body {
   background-color: #f4f7f8;
 }
-.navbar {
-  margin: 2rem 0 2.5rem;
-}
-.my-navbar {
-  align-items: center;
-  background: #333;
-  display: flex;
-  height: 6rem;
-  justify-content: space-between;
-  padding: 0 2%;
-  margin-bottom: 3rem;
-}
+
 .my-navbar-brand {
-  font-size: 18px;
+  font-size: 25px;
 }
-.my-navbar-brand,
-.my-navbar-item {
-  color: #8c8c8c;
-}
-.my-navbar-brand:hover,
-.my-navbar-item:hover {
-  color: #fff;
-}
+
 .table td:nth-child(2),
 .table td:nth-child(3),
 .table td:nth-child(4) {
