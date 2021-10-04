@@ -17,3 +17,6 @@ body {
 .form-control[readonly] {
   background-color: #fff;
 }
+.alert p {
+  margin-bottom: 0;
+}

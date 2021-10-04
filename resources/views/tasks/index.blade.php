@@ -11,7 +11,7 @@
             </div>
             <div class='list-group'>
               @foreach($folders as $folder)
-                <a href="{{ route('tasks.index', ['id' => $folder->id ])}}"
+                <a href="{{ route('tasks.index', ['folder' => $folder->id ])}}"
                   class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}">
                   {{ $folder->title }}
                   @if ((Auth::check()) && (Auth::user()->name == "admin"))
@@ -27,7 +27,7 @@
             <div class='card-header'>Task</div>
             <div class='card-body'>
               <div class='text-right'>
-                <a href="{{ route('tasks.create', [ 'id' => $current_folder_id]) }}" class="btn btn-outline-secondary btn-block">Add Task</a>
+                <a href="{{ route('tasks.create', [ 'folder' => $current_folder_id]) }}" class="btn btn-outline-secondary btn-block">Add Task</a>
               </div>
             </div>
             <table class='table'>
@@ -45,7 +45,7 @@
                     <td>{{ $task->title }}</td>
                     <td><span class='label'>{{ $task->status_label }}</span></td>
                     <td>{{ $task->formatted_due_date }}</td>
-                    <td><a href="{{ route('tasks.edit', ['id'=>$current_folder_id, 'task_id'=> $task->id]) }}">Edit</a></td>
+                    <td><a href="{{ route('tasks.edit', ['folder'=>$current_folder_id, 'task'=> $task->id]) }}">Edit</a></td>
                   </tr>
                 @endforeach
               </tbody>
