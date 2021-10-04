@@ -44,8 +44,6 @@ class TaskController extends Controller
     {
       $carbon = new Carbon($request->due_date);
 
-      // $current_folder = Folder::find($id);
-
       $task = new Task();
       $task->title = $request->title;
       $task->due_date = $carbon->toDate();
@@ -60,7 +58,6 @@ class TaskController extends Controller
      */
     public function showEditForm(Folder $folder, Task $task)
     {
-      // $task = Task::find($task_id);
 
       return view('tasks/edit', [
         'task' => $task,
@@ -69,7 +66,6 @@ class TaskController extends Controller
 
     public function edit(Folder $folder, Task $task, EditTaskRequest $request)
     {
-      // $task = Task::find($task_id);
 
       $task->title = $request->title;
       $task->status = $request->status;

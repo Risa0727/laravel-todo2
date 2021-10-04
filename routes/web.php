@@ -27,8 +27,10 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/folders/create', [FolderController::class, 'showCreateFrom'])->name('folders.create');
   Route::post('/folders/create', [FolderController::class, 'create']);
 
-  // top page
-  Route::get('folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+  Route::group(['middleware' => 'can:view,folder'], function() {
+    // top page
+    Route::get('folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+  });
 
   // create new task
   Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
