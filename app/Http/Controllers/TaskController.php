@@ -31,7 +31,7 @@ class TaskController extends Controller
     }
 
     /**
-     * GET /folders/{id}/tasks/create
+     * GET /folders/{folder}/tasks/create
      */
     public function showCreateForm(Folder $folder)
     {
@@ -54,10 +54,11 @@ class TaskController extends Controller
     }
 
     /**
-     * GET /folders/{id}/tasks/{task_id}/edit
+     * GET /folders/{folder}/tasks/{task}/edit
      */
     public function showEditForm(Folder $folder, Task $task)
     {
+      $this->checkRelation($folder, $task);
 
       return view('tasks/edit', [
         'task' => $task,
@@ -66,7 +67,8 @@ class TaskController extends Controller
 
     public function edit(Folder $folder, Task $task, EditTaskRequest $request)
     {
-
+      $this->checkRelation($folder, $task);
+      
       $task->title = $request->title;
       $task->status = $request->status;
 
@@ -77,6 +79,16 @@ class TaskController extends Controller
       return redirect()->route('tasks.index', [
         'folder' => $task->folder_id,
       ]);
+    }
+
+    /**
+     * Check if folder ID is NOT equal to task's folder ID
+     */
+    private function checkRelation(Folder $folder, Task $task)
+    {
+      if($folder->id !== $task->folder_id) {
+        abort(404);
+      }
     }
 
 }

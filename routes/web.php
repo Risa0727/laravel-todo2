@@ -30,15 +30,15 @@ Route::group(['middleware' => 'auth'], function() {
   Route::group(['middleware' => 'can:view,folder'], function() {
     // top page
     Route::get('folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
+    // create new task
+    Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
+    Route::post('/folders/{folder}/tasks/create', [TaskController::class, 'create']);
+
+    // edit a task
+    Route::get('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
+    Route::post('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'edit']);
   });
-
-  // create new task
-  Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
-  Route::post('/folders/{folder}/tasks/create', [TaskController::class, 'create']);
-
-  // edit a task
-  Route::get('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
-  Route::post('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'edit']);
 });
 
 Auth::routes();
