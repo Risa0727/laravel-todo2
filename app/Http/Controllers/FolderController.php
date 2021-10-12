@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Folder;
-use App\HTTP\Requests\CreateFolder;
+use App\Http\Requests\CreateFolder;
 
 class FolderController extends Controller
 {
