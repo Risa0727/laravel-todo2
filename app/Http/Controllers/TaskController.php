@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use App\HTTP\Requests\CreateTaskRequest;
-use App\HTTP\Requests\EditTaskRequest;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\EditTaskRequest;
 use Carbon\Carbon;
 
 class TaskController extends Controller
@@ -68,7 +68,7 @@ class TaskController extends Controller
     public function edit(Folder $folder, Task $task, EditTaskRequest $request)
     {
       $this->checkRelation($folder, $task);
-      
+
       $task->title = $request->title;
       $task->status = $request->status;
 
